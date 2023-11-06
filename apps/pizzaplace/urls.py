@@ -1,5 +1,5 @@
 from django.urls import path
-from .api_views import PizzaView
+from .views import PizzaView
 
 
 urlpatterns = [
