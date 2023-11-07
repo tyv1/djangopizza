@@ -3,5 +3,5 @@ from .views import PizzaView
 
 
 urlpatterns = [
-    path('pizzas/', PizzaView.as_view()),
+    path('', PizzaView.as_view()),
 ]

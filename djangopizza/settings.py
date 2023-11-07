@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'apps.pizzaplace',
     # API
     'rest_framework',
-    'apps.api',
+    'api',
 ]
 
 MIDDLEWARE = [
