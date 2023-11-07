@@ -10,6 +10,8 @@ class ToppingSerializer(serializers.HyperlinkedModelSerializer):
             ]
 
 class PizzaSerializer(serializers.HyperlinkedModelSerializer):
+    toppings = ToppingSerializer(many=True)
+
     class Meta:
         model = Pizza
         fields = [
