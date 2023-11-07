@@ -38,9 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.pizzaplace',
-    # API
     'rest_framework',
-    'api',
 ]
 
 MIDDLEWARE = [
