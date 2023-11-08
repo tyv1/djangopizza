@@ -29,9 +29,10 @@ class Store(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=10)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE, verbose_name='Favorite Store')
 
     def __str__(self):
         return self.user.username
