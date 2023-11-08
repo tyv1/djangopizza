@@ -43,6 +43,14 @@ class StoreView(APIView):
         stores = Store.objects.all()
         serializer = StoreSerializer(stores, many=True)
         return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = StoreSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
 
 class CustomerView(APIView):
     permission_classes = [IsAuthenticated]
@@ -51,6 +59,14 @@ class CustomerView(APIView):
         customers = Customer.objects.all()
         serializer = CustomerSerializer(customers, many=True)
         return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = CustomerSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
 
 class OrderView(APIView):
     permission_classes = [IsAuthenticated]
