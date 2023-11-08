@@ -7,9 +7,8 @@ class APIRoot(APIView):
 
     def get_url_patterns(self, url_dict, resolver, prefix=''):
         """
-        Build a dicitonary of all URL patterns.
+        Build a dictionary of all URL patterns.
         """
-
         current_url = self.request.build_absolute_uri('/') # Get the current URL
         
         for pattern in resolver.url_patterns:
@@ -17,8 +16,8 @@ class APIRoot(APIView):
                 self.get_url_patterns(url_dict, pattern, prefix + pattern.pattern.regex.pattern)
             else:
                 url = prefix + pattern.pattern.regex.pattern
-                url = url.replace('^', '').replace('\\Z', '')
-                if not url.startswith('api-auth') and not url.startswith('admin'):
+                url = url.replace('^', '').rstrip('\\Z')
+                if url.startswith('api'):
                     url_dict[url] = current_url + url
 
     def get(self, request, format=None):
