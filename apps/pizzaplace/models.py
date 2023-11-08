@@ -28,9 +28,10 @@ class Store(models.Model):
         return self.name
 
 class Customer(models.Model):
+    name = models.CharField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=10)
     address = models.CharField(max_length=100)
+    phone = models.CharField(max_length=10)
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
 
     def __str__(self):
