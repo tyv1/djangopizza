@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Topping, Pizza
+from .models import Topping, Pizza, Store, Customer, PizzaOrder, OrderDetails, Order
 
 class ToppingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -21,4 +21,39 @@ class PizzaSerializer(serializers.HyperlinkedModelSerializer):
             'description',
             'price',
             'image'
+            ]
+
+class StoreSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Store
+        fields = [
+            'id',
+            'name',
+            'address',
+            'phone'
+            ]
+
+class CustomerSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Customer
+        fields = [
+            'id',
+            'user',
+            'phone',
+            'address',
+            'store'
+            ]
+
+class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Order
+        fields = [
+            'id',
+            'customer',
+            'store',
+            'order_details',
+            'total',
+            'order_date',
+            'delivery_date',
+            'fulfilled',
             ]
