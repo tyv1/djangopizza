@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Topping, Pizza, Store, Customer, PizzaOrder, OrderDetails, Order
+from .models import Topping, Pizza, Store, Customer, Order
 
 class ToppingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -51,9 +51,6 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             'id',
             'customer',
             'store',
-            'order_details',
-            'total',
+            'pizza',
             'order_date',
-            'delivery_date',
-            'fulfilled',
             ]
