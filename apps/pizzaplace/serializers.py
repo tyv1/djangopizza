@@ -51,6 +51,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             'id',
             'customer',
             'store',
-            'pizza',
+            'items',
             'order_date',
             ]
+        

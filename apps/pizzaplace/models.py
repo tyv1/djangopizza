@@ -42,5 +42,21 @@ class Customer(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
+    items = models.ManyToManyField('OrderItem')
     order_date = models.DateTimeField(auto_now_add=True)
+
+class OrderItem(models.Model):
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    modification = models.ManyToManyField(Topping, through='OrderItemModification')
+
+class OrderItemModification(models.Model):
+    MODIFICATIONS = [
+        ('None', 'None'),
+        ('Extra', 'Extra'),
+        ('Remove', 'Remove'),
+    ]
+
+    topping = models.ForeignKey(Topping, on_delete=models.CASCADE)
+    order_item = models.ForeignKey(OrderItem, on_delete=models.CASCADE)
+    modification = models.CharField(max_length=10, choices=MODIFICATIONS, default='None')
